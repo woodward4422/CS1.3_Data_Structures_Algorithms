@@ -91,7 +91,7 @@ def convert(digits, base1, base2):
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
     # First decodes it to a base ten number first
     decode_digits = decode(digits, base1)
-    encoded_digits = encode(decode, base2)
+    encoded_digits = encode(decode_digits, base2)
     return encoded_digits
 
 
