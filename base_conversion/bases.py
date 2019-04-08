@@ -53,9 +53,9 @@ def decode(digits, base):
     # ...
 
     power = len(digits) - 1
-    sum = 0
+    running_total = 0
     for digit in digits:
-        sum += (base ** power) * string.printable.index(digit)
+        running_total += (base ** power) * string.printable.index(digit)
         power -= 1
     return sum
 
