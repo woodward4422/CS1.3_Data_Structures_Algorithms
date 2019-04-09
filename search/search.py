@@ -25,7 +25,7 @@ def linear_search_recursive(array, item, index=0):
         Return: Returns either the index of the found item or None if the item is not found
      '''
     if len(array) == 0:
-            return None
+        return None
     # Base case that handles when the element is not found in the array
     if index > len(array) - 1:
         return None

@@ -17,7 +17,6 @@ def factorial_iterative(n):
     ''' Parameter n: An Int to be used to take a factorial of
         Return: Returns and integer that gives back the factorial of the number 
      '''
-
     product = 1
     while n > 0:
         # Keep a running product while decrementing N to get a factorial
