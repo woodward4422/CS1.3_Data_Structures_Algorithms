@@ -17,7 +17,10 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'abc') is True  # all strings contain themselves
         assert contains('aaa', 'a') is True  # multiple occurrences
         assert contains('aaa', 'aa') is True  # overlapping pattern
-        # TODO: Write more positive test cases with assert is True statements
+        assert contains('aaa', 'aaa') is True
+        assert contains('adobe', 'do') is True
+        assert contains('adobe', 'dobe') is True
+
         # ...
 
     def test_contains_with_non_matching_patterns(self):
@@ -26,7 +29,12 @@ class StringsTest(unittest.TestCase):
         assert contains('abc', 'ac') is False  # important to test close cases
         assert contains('abc', 'az') is False  # first letter, but not last
         assert contains('abc', 'abz') is False  # first 2 letters, but not last
-        # TODO: Write more negative test cases with assert is False statements
+        assert contains('abc', 'abzz') is False
+        assert contains('abc', 'ac') is False
+        assert contains('abz', 'ac') is False
+        assert contains('abc', 'ac') is False
+        assert contains('bananas', 'ns') is False
+
         # ...
 
     def test_contains_with_complex_patterns(self):
@@ -37,6 +45,13 @@ class StringsTest(unittest.TestCase):
         assert contains('bananas', 'nas') is True  # overlapping prefix
         # TODO: Write more test cases that check complex patterns or edge cases
         # You'll need a lot more than this to test your algorithm's robustness
+        assert contains('bananas', 'banas') is False
+        assert contains('ababa', 'aba') is True
+        assert contains('bananas', 'nas') is True
+        assert contains('bananas', ' a ') is False
+        assert contains('bananas', ' anas') is False
+        assert contains('bananas', 'band') is False
+
         # ...
 
     def test_find_index_with_matching_patterns(self):

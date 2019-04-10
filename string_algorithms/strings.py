@@ -6,6 +6,23 @@ def contains(text, pattern):
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement contains here (iteratively and/or recursively)
+    if pattern == '':
+        return True
+    # if pattern[0] not in text:
+    #     return False
+    else:
+        counter = 0
+        for i in range(len(text)):
+            if counter == len(pattern):
+                return True
+            if text[i] == pattern[counter] or text[i] == pattern[0]:
+                counter += 1
+            else:
+                counter = 0
+        if counter == len(pattern):
+            return True
+        else:
+            return False
 
 
 def find_index(text, pattern):
@@ -13,7 +30,11 @@ def find_index(text, pattern):
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_index here (iteratively and/or recursively)
+    if contains(text, pattern) == False:
+        return None
+    else:
+        if text == pattern:
+            return 0
 
 
 def find_all_indexes(text, pattern):
