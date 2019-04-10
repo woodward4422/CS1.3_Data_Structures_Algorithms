@@ -5,6 +5,13 @@ import string
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
+'''
+
+abc -> cba
+cab
+bac
+cba
+'''
 
 
 def is_palindrome(text):
@@ -18,10 +25,13 @@ def is_palindrome(text):
 
 
 def is_palindrome_iterative(text):
-    # TODO: implement the is_palindrome function iteratively here
-    pass
-    # once implemented, change is_palindrome to call is_palindrome_iterative
-    # to verify that your iterative implementation passes all tests
+    sanitized_string = sanitize_string(text)
+    word = ""
+    for letter in reversed(sanitized_string):
+        word += letter
+    if word == sanitized_string:
+        return True
+    return False
 
 
 def is_palindrome_recursive(text, left=None, right=None):
@@ -29,6 +39,14 @@ def is_palindrome_recursive(text, left=None, right=None):
     pass
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
+
+
+def sanitize_string(text):
+    lower_case = text.lower()
+    no_white_space = lower_case.replace(" ", "")
+    no_punctuation = no_white_space.translate(
+        str.maketrans('', '', string.punctuation))
+    return no_punctuation
 
 
 def main():
