@@ -25,10 +25,13 @@ def is_palindrome(text):
 
 
 def is_palindrome_iterative(text):
-    sanitized_string = sanitize_string(text)
+    # Normalize the string to ignore punctiation and whitespace
+    sanitized_string = normalize_string(text)
     word = ""
+    # Go through the string backwards, and append to a new string
     for letter in reversed(sanitized_string):
         word += letter
+    # Check if the strings are the same
     if word == sanitized_string:
         return True
     return False
@@ -36,12 +39,26 @@ def is_palindrome_iterative(text):
 
 def is_palindrome_recursive(text, left=None, right=None):
     # TODO: implement the is_palindrome function recursively here
-    pass
+
     # once implemented, change is_palindrome to call is_palindrome_recursive
     # to verify that your iterative implementation passes all tests
 
+    normalized_string = normalize_string(text)
 
-def sanitize_string(text):
+    if left == None:
+        left = 0
+        right = len(normalized_string) - 1
+
+    if left > right:
+        return True
+
+    if normalized_string[left] != normalized_string[right]:
+        return False
+
+    return is_palindrome_recursive(normalized_string, left + 1, right - 1)
+
+
+def normalize_string(text):
     lower_case = text.lower()
     no_white_space = lower_case.replace(" ", "")
     no_punctuation = no_white_space.translate(
