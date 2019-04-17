@@ -178,8 +178,8 @@ class LinkedList(object):
         """Replace the given old_item in this linked list with given new_item
         using the same node, or raise ValueError if old_item is not found.
         Best case running time: O(1) under what conditions? Finds the element at the first index
-        Worst case running time: O(N) under what conditions? Does not find the element to replace or"""
-        # TODO: Find the node containing the given old_item and replace its
+        Worst case running time: O(N) under what conditions? Does not find the element to replace or element is last item"""
+
         # data with new_item, without creating a new node object
         current = self.head
         # Keep iterating through the linked list until we find the element or current is None
