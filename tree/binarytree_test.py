@@ -110,6 +110,13 @@ class BinarySearchTreeTest(unittest.TestCase):
         tree.insert('C')
         assert tree.size == 3
 
+    def test_one_case(self):
+        tree = BinarySearchTree()
+        node = BinaryTreeNode(3)
+        tree.insert(3)
+        assert tree.size == 1
+        assert tree._find_parent_node_recursive(3, tree.root) == None
+
     def test_search_with_3_items(self):
         # Create a complete binary search tree of 3 items in level-order
         items = [2, 1, 3]

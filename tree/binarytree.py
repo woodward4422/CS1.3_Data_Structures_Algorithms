@@ -1,5 +1,7 @@
 #!python
 
+from queue import ArrayQueue
+
 
 class BinaryTreeNode(object):
 
@@ -224,12 +226,13 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Traverse left subtree, if it exists
-        ...
-        # TODO: Visit this node's data with given function
-        ...
-        # TODO: Traverse right subtree, if it exists
-        ...
+        if node is not None:
+            # Traverse left subtree, if it exists
+            self._traverse_in_order_recursive(node.left, visit)
+            # Visit this node's data with given function
+            visit(node.data)
+            # Traverse right subtree, if it exists
+            self._traverse_in_order_recursive(node.right, visit)
 
     def _traverse_in_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative in-order traversal (DFS).
@@ -252,12 +255,13 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Visit this node's data with given function
-        ...
-        # TODO: Traverse left subtree, if it exists
-        ...
-        # TODO: Traverse right subtree, if it exists
-        ...
+        # Visit this node's data with given function
+        if node is not None:
+            visit(node.data)
+            # Traverse left subtree, if it exists
+            self._traverse_pre_order_recursive(node.left, visit)
+            # Traverse right subtree, if it exists
+            self._traverse_pre_order_recursive(node.right, visit)
 
     def _traverse_pre_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative pre-order traversal (DFS).
@@ -280,12 +284,13 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
-        # TODO: Traverse left subtree, if it exists
-        ...
-        # TODO: Traverse right subtree, if it exists
-        ...
-        # TODO: Visit this node's data with given function
-        ...
+        # Traverse left subtree, if it exists
+        if node is not None:
+            self._traverse_post_order_recursive(node.left, visit)
+            # TODO: Traverse right subtree, if it exists
+            self._traverse_post_order_recursive(node.right, visit)
+            # TODO: Visit this node's data with given function
+            visit(node.data)
 
     def _traverse_post_order_iterative(self, node, visit):
         """Traverse this binary tree with iterative post-order traversal (DFS).
@@ -309,19 +314,21 @@ class BinarySearchTree(object):
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?"""
         # TODO: Create queue to store nodes not yet traversed in level-order
-        queue = ...
-        # TODO: Enqueue given starting node
-        ...
-        # TODO: Loop until queue is empty
-        while ...:
-            # TODO: Dequeue node at front of queue
-            node = ...
-            # TODO: Visit this node's data with given function
-            ...
-            # TODO: Enqueue this node's left child, if it exists
-            ...
-            # TODO: Enqueue this node's right child, if it exists
-            ...
+        queue = ArrayQueue()
+        # Enqueue given starting node
+        queue.enqueue(start_node)
+        # Loop until queue is empty
+        while queue.length() > 0:
+            # Dequeue node at front of queue
+            node = queue.dequeue()
+            # Visit this node's data with given function
+            visit(node.data)
+            # Enqueue this node's left child, if it exists
+            if node.left:
+                queue.enqueue(node.left)
+            # Enqueue this node's right child, if it exists
+            if node.right:
+                queue.enqueue(node.right)
 
 
 def test_binary_search_tree():
