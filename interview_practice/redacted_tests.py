@@ -24,9 +24,17 @@ class RedactedTest(unittest.TestCase):
         some_words = ["dog", "cat", "mouse"]
         some_banned_words = ["cat", "mouse", "chicken"]
         assert sol.redact_problem(some_words, some_banned_words) == ["dog"]
+    # These next test is thanks to Ryans feedback!
 
     def test_empty_list(self):
         sol = Solution()
         empty_one = []
         empty_two = []
         assert sol.redact_problem(empty_one, empty_two) == []
+
+    def test_duplicates(self):
+        sol = Solution()
+        duplicate_words = ["dog", "dog", "mouse"]
+        banned_words = ["cat", "chicken", "giraffe"]
+        assert sol.redact_problem(duplicate_words, banned_words) == [
+            "dog", "dog", "mouse"]
