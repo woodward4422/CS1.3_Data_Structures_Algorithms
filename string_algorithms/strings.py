@@ -38,6 +38,7 @@ def find_index(text, pattern):
 def find_all_indexes(text, pattern):
     """Return a list of starting indexes of all occurrences of pattern in text,
     or an empty list if not found."""
+    """Worst case runtime: O(n): Where n is the input task as we have to iterate through the entire text string, the worst case space complexity is O(n) as a pattern of '' will return us an array with n elements"""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # Implement find_all_indexes here (iteratively and/or recursively)
@@ -62,6 +63,7 @@ def find_all_indexes(text, pattern):
 
 
 def find_index_refactored(text, pattern, start=0):
+    """Worst case runtime: O(n): Where n is the input task as we have to iterate through the entire text string, space complexity is constant in this case"""
     if pattern == '':
         return 0
     if pattern == text:
@@ -76,6 +78,7 @@ def find_index_refactored(text, pattern, start=0):
 
 
 def contains_and_first_index(text, pattern):
+    """Worst case runtime: O(n): Where n is the input task as we have to iterate through the entire text string, space complexity is constant in this case"""
     # Check if that pattern is empty
     if pattern == '':
         return (True, 0)
