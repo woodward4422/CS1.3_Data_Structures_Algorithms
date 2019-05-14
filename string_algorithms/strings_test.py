@@ -65,8 +65,9 @@ class StringsTest(unittest.TestCase):
         assert find_index('abc', 'abc') == 0  # all strings contain themselves
         assert find_index('aaa', 'a') == 0  # multiple occurrences
         assert find_index('aaa', 'aa') == 0  # overlapping pattern
-        # TODO: Write more positive test cases with assert equal int statements
-        # ...
+        # Write more positive test cases with assert equal int statements
+        assert find_index('nas', 'as') == 1
+        assert find_index('abaethaeth', 'aeth') == 2
 
     def test_find_index_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns
@@ -75,8 +76,9 @@ class StringsTest(unittest.TestCase):
         assert find_index('abc', 'az') is None  # first letter, but not last
         # first 2 letters, but not last
         assert find_index('abc', 'abz') is None
-        # TODO: Write more negative test cases with assert is None statements
-        # ...
+        # Write more negative test cases with assert is None statements
+        assert find_index('leo', 'lo') is None
+        assert find_index('lo', 'ol') is None
 
     def test_find_index_with_complex_patterns(self):
         # Difficult test cases (examples) with complex patterns
@@ -91,9 +93,11 @@ class StringsTest(unittest.TestCase):
         assert find_index('abcabcdabcde', 'abcd') == 3
         assert find_index('abra cadabra', 'abra') == 0  # multiple occurrences
         assert find_index('abra cadabra', 'adab') == 6  # overlapping prefix
-        # TODO: Write more test cases that check complex patterns or edge cases
-        # You'll need a lot more than this to test your algorithm's robustness
-        # ...
+        # Write more test cases that check complex patterns or edge cases
+        assert find_index('abra cadabra', 'abr') == 0
+        assert find_index('banana', 'an') == 1
+        assert find_index('banana', 'na') == 2
+        assert find_index('nonon', "no") == 0
 
     def test_find_all_indexes_with_matching_patterns(self):
         # Positive test cases (examples) with matching patterns
@@ -110,8 +114,11 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('aaa', 'a') == [
             0, 1, 2]  # multiple occurrences
         assert find_all_indexes('aaa', 'aa') == [0, 1]  # overlapping pattern
-        # TODO: Write more positive test cases with assert equal list statements
-        # ...
+        # Write more positive test cases with assert equal list statements
+        assert find_all_indexes('abc', 'bc') == [1]
+        assert find_all_indexes('abcabc', 'bc') == [1, 4]
+        assert find_all_indexes('bananan', 'an') == [1, 3, 5]
+        assert find_all_indexes('aaaa', 'aa') == [0, 1, 2]
 
     def test_find_all_indexes_with_non_matching_patterns(self):
         # Negative test cases (counterexamples) with non-matching patterns
@@ -123,8 +130,9 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abc', 'az') == []
         # first 2 letters, but not last
         assert find_all_indexes('abc', 'abz') == []
-        # TODO: Write more negative test cases with assert equal list statements
-        # ...
+        # Write more negative test cases with assert equal list statements
+        assert find_all_indexes('banana', 'bn') == []
+        assert find_all_indexes('abc', 'abl') == []
 
     def test_find_all_indexes_with_complex_patterns(self):
         # Difficult test cases (examples) with complex patterns
@@ -146,9 +154,10 @@ class StringsTest(unittest.TestCase):
             0, 8]  # multiple occurrences
         assert find_all_indexes('abra cadabra', 'adab') == [
             6]  # overlapping prefix
-        # TODO: Write more test cases that check complex patterns or edge cases
-        # You'll need a lot more than this to test your algorithm's robustness
-        # ...
+        # Write more test cases that check complex patterns or edge cases
+        assert find_all_indexes('bananan', 'an') == [1, 3, 5]
+        # Complex overlap test
+        assert find_all_indexes('aaaa', 'aa') == [0, 1, 2]
 
 
 if __name__ == '__main__':

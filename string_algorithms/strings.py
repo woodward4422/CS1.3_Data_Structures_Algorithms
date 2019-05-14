@@ -40,7 +40,39 @@ def find_all_indexes(text, pattern):
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+    # Implement find_all_indexes here (iteratively and/or recursively)
+    # Check if that pattern is empty
+    if pattern == '':
+        ret_items = []
+        for i in range(len(text)):
+            ret_items.append(i)
+        return ret_items
+
+    if pattern == text:
+        return [0]
+
+    start_indexes = []
+    start_index = find_index_refactored(text, pattern)
+    print("Start Index: {}".format(start_index))
+    while start_index != None:
+        start_indexes.append(start_index)
+        start_index = find_index_refactored(text, pattern, start_index + 1)
+
+    return start_indexes
+
+
+def find_index_refactored(text, pattern, start=0):
+    if pattern == '':
+        return 0
+    if pattern == text:
+        return 0
+    if len(pattern) > len(text):
+        return None
+    for index in range(start, len(text) - len(pattern) + 1):
+        if text[index] == pattern[0]:
+            if text[index: index+len(pattern)] == pattern:
+                return index
+    return None
 
 
 def contains_and_first_index(text, pattern):
@@ -50,6 +82,7 @@ def contains_and_first_index(text, pattern):
     else:
         counter = 0  # Create a counter that will keep track of how many letters match the pattern
         index_counter = None  # Keeps track of the first index found
+        index_arr = []
         for i in range(len(text)):
             index_counter = i
             if counter == len(pattern):
