@@ -57,7 +57,7 @@ def decode(digits, base):
     for digit in digits:
         running_total += (base ** power) * string.printable.index(digit)
         power -= 1
-    return sum
+    return running_total
 
 
 def encode(number, base):

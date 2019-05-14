@@ -44,25 +44,29 @@ def find_all_indexes(text, pattern):
 
 
 def contains_and_first_index(text, pattern):
+    # Check if that pattern is empty
     if pattern == '':
         return (True, 0)
     else:
-        counter = 0
-        index_counter = None
+        counter = 0  # Create a counter that will keep track of how many letters match the pattern
+        index_counter = None  # Keeps track of the first index found
         for i in range(len(text)):
             index_counter = i
             if counter == len(pattern):
+                # Our pattern matches our counter length so we found it! Now we can get the index by taking the index_counter subtracted by the len of the patter
                 return (True, index_counter - len(pattern))
+            # We found another match with the pattern, could possibly be an overlap so we test both cases
             if text[i] == pattern[counter] or text[i] == pattern[0]:
-                if text[i] == pattern[counter]:
+                if text[i] == pattern[counter]:  # Increase counter here
                     counter += 1
                 else:
-                    counter = 1
+                    counter = 1  # reset the counter back to one
             else:
-                counter = 0
+                counter = 0  # No pattern found yet :(
         if counter == len(pattern):
             return (True, index_counter - len(pattern) + 1)
         else:
+            # we did not find any pattern, thus the text does not contain the pattern
             return (False, None)
 
 
