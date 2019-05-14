@@ -101,7 +101,7 @@ class ArrayStack(object):
         if self.is_empty():
             raise ValueError("The stack is empty!")
         else:
-            self.list.pop()
+            return self.list.pop()
 
 
 # Implement LinkedStack and ArrayStack above, then change the assignment below

@@ -25,6 +25,16 @@ class SetTest(unittest.TestCase):
         assert st.contains(2) == True
         assert st.contains(7) == False
 
+    def test_add_strings_and_contains(self):
+        st = Sets()
+        st.add("Hello")
+        assert st.size == 1
+        st.add("Noah")
+        assert st.size == 2
+        assert st.contains("Hello") == True
+        assert st.contains("Noah") == True
+        assert st.contains("Woodward") == False
+
     def test_delete(self):
         st = Sets()
         st.add(1)
@@ -39,23 +49,23 @@ class SetTest(unittest.TestCase):
         first_set = Sets([1, 2, 3, 4])
         second_set = Sets([1, 2, 3])
         union_set = second_set.union(first_set)
-        assert union_set.size == 3
+        assert union_set.size == 4
         assert union_set.contains(1) == True
         assert union_set.contains(2) == True
         assert union_set.contains(3) == True
-        assert union_set.contains(4) == False
+        assert union_set.contains(4) == True
 
     def test_intersection(self):
         first_set = Sets([1, 2, 3, 6])
-        second_set = Sets([1, 2, 3, 4, 5, ])
+        second_set = Sets([1, 2, 3, 4, 5, 7])
         intersection_set = first_set.intersection(second_set)
-        assert intersection_set.size == 6
+        assert intersection_set.size == 3
         assert intersection_set.contains(1) == True
         assert intersection_set.contains(2) == True
         assert intersection_set.contains(3) == True
-        assert intersection_set.contains(4) == True
-        assert intersection_set.contains(5) == True
-        assert intersection_set.contains(6) == True
+        assert intersection_set.contains(4) == False
+        assert intersection_set.contains(5) == False
+        assert intersection_set.contains(6) == False
         assert intersection_set.contains(7) == False
 
     def test_difference(self):
